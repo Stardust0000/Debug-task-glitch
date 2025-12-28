@@ -179,7 +179,7 @@ export function useTasks(): UseTasksState {
     setLastDeleted(null);
   },[])
 
-  return { tasks, loading, error, derivedSorted, metrics, lastDeleted, addTask, updateTask, deleteTask, undoDelete, clearLastDeleted, // egbug Bug 2: 3) Exposed to aloow UI to end undo state on snackbar close clue
+  return { tasks, loading, error, derivedSorted, metrics, lastDeleted, addTask, updateTask, deleteTask, undoDelete, clearLastDeleted, // Debug Bug 2: 3) Exposed to allow UI to end undo state on snackbar close clue
      };
 }
 
