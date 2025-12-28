@@ -14,10 +14,19 @@ import {
 } from '@mui/material';
 import { Priority, Status, Task } from '@/types';
 
+type TaskInput = {
+  id?: string;
+  title: string;
+  revenue: number;
+  timeTaken: number;
+  priority: Priority;
+  status: Status;
+  notes?: string;
+};
 interface Props {
   open: boolean;
   onClose: () => void;
-  onSubmit: (value: Omit<Task, 'id'> & { id?: string }) => void;
+  onSubmit: (value: TaskInput) => void;
   existingTitles: string[];
   initial?: Task | null;
 }
@@ -69,7 +78,7 @@ export default function TaskForm({ open, onClose, onSubmit, existingTitles, init
 
   const handleSubmit = () => {
     const safeTime = typeof timeTaken === 'number' && timeTaken > 0 ? timeTaken : 1; // auto-correct
-    const payload: Omit<Task, 'id'> & { id?: string } = {
+    const payload: TaskInput = {
       title: title.trim(),
       revenue: typeof revenue === 'number' ? revenue : 0,
       timeTaken: safeTime,
