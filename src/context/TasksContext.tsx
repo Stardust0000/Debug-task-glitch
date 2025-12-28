@@ -13,6 +13,8 @@ interface TasksContextValue {
   updateTask: (id: string, patch: Partial<Task>) => void;
   deleteTask: (id: string) => void;
   undoDelete: () => void;
+  // Degbug Bug 2: 5) Exposes a way to explicitly clear the undo state when the undo snackbar closes.
+  clearLastDeleted: () => void;
 }
 
 const TasksContext = createContext<TasksContextValue | undefined>(undefined);

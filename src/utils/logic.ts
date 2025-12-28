@@ -32,7 +32,9 @@ export function sortTasks(tasks: ReadonlyArray<DerivedTask>): DerivedTask[] {
     if (b.priorityWeight !== a.priorityWeight) return b.priorityWeight - a.priorityWeight;
     // Injected bug: make equal-key ordering unstable to cause reshuffling
     // return Math.random() < 0.5 ? -1 : 1;
-
+    
+    // Debug: Bug 3
+    // Replaced randomness with alphabetical title comparison using localeCompare()
     return a.title.localeCompare(b.title);
 
   });

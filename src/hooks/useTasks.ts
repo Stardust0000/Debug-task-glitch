@@ -23,6 +23,8 @@ interface UseTasksState {
   updateTask: (id: string, patch: Partial<Task>) => void;
   deleteTask: (id: string) => void;
   undoDelete: () => void;
+  //Debug Bug 2: 1)Clears undo state when the snackbar closes
+  clearLastDeleted: () => void;
 }
 
 const INITIAL_METRICS: Metrics = {
@@ -170,7 +172,15 @@ export function useTasks(): UseTasksState {
     setLastDeleted(null);
   }, [lastDeleted]);
 
-  return { tasks, loading, error, derivedSorted, metrics, lastDeleted, addTask, updateTask, deleteTask, undoDelete };
+  // Degbug Bug 2: 
+  //2) To clear the undo state when the undo snackbar closes.
+  // This prevents restoring previously deleted tasks after the undo window has expired.
+  const clearLastDeleted = useCallback (() => {
+    setLastDeleted(null);
+  },[])
+
+  return { tasks, loading, error, derivedSorted, metrics, lastDeleted, addTask, updateTask, deleteTask, undoDelete, clearLastDeleted, // egbug Bug 2: 3) Exposed to aloow UI to end undo state on snackbar close clue
+     };
 }
 
 

@@ -19,8 +19,12 @@ import {
 } from '@/utils/logic';
 
 function AppContent() {
-  const { loading, error, metrics, derivedSorted, addTask, updateTask, deleteTask, undoDelete, lastDeleted } = useTasksContext();
-  const handleCloseUndo = () => {};
+  const { loading, error, metrics, derivedSorted, addTask, updateTask, deleteTask, undoDelete, lastDeleted,clearLastDeleted } = useTasksContext();
+  const handleCloseUndo = () => {
+    // Degbug Bug 2: 4) Called when the undo snackbar closes
+    // Once the snackbar closes, undo is invalid so we explicitly clear the last deleted task.
+    clearLastDeleted();
+  };
   const [q, setQ] = useState('');
   const [fStatus, setFStatus] = useState<string>('All');
   const [fPriority, setFPriority] = useState<string>('All');
