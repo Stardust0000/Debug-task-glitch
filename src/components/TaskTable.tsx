@@ -7,9 +7,19 @@ import { DerivedTask, Task } from '@/types';
 import TaskForm from '@/components/TaskForm';
 import TaskDetailsDialog from '@/components/TaskDetailsDialog';
 
+type TaskInput = {
+  id?: string;
+  title: string;
+  revenue: number;
+  timeTaken: number;
+  priority: Task['priority'];
+  status: Task['status'];
+  notes?: string;
+};
+
 interface Props {
   tasks: DerivedTask[];
-  onAdd: (payload: Omit<Task, 'id'>) => void;
+  onAdd: (payload: TaskInput) => void;
   onUpdate: (id: string, patch: Partial<Task>) => void;
   onDelete: (id: string) => void;
 }
@@ -30,7 +40,7 @@ export default function TaskTable({ tasks, onAdd, onUpdate, onDelete }: Props) {
     setOpenForm(true);
   };
 
-  const handleSubmit = (value: Omit<Task, 'id'> & { id?: string }) => {
+  const handleSubmit = (value: TaskInput) => {
 
     if (value.id) {
       const { id, ...rest } = value as Task;
