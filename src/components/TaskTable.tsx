@@ -3,19 +3,9 @@ import { Box, Button, Card, CardContent, IconButton, Stack, Table, TableBody, Ta
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { DerivedTask, Task } from '@/types';
+import { DerivedTask, Task, TaskInput  } from '@/types';
 import TaskForm from '@/components/TaskForm';
 import TaskDetailsDialog from '@/components/TaskDetailsDialog';
-
-type TaskInput = {
-  id?: string;
-  title: string;
-  revenue: number;
-  timeTaken: number;
-  priority: Task['priority'];
-  status: Task['status'];
-  notes?: string;
-};
 
 interface Props {
   tasks: DerivedTask[];

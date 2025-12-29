@@ -12,17 +12,7 @@ import {
   Stack,
   TextField,
 } from '@mui/material';
-import { Priority, Status, Task } from '@/types';
-
-type TaskInput = {
-  id?: string;
-  title: string;
-  revenue: number;
-  timeTaken: number;
-  priority: Priority;
-  status: Status;
-  notes?: string;
-};
+import { Priority, Status, Task, TaskInput } from '@/types';
 interface Props {
   open: boolean;
   onClose: () => void;
